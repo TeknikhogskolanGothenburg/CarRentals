@@ -1,0 +1,33 @@
+﻿Projekt beskrivning
+     
+Jag har valt att separera mina servicekontrakt  utefter mina olika entiteter då jag
+upplever att det bidrar till en tydligare struktur. 
+Däremot har valt att endast ha en implementations klass till alla mina servicekontrakt.  
+
+
+Rest servicen innehåller metoderna AddCustomer,GetAllCustomer och GetCustomerByID.  
+Jag har valt att använda mig av Autentisering där genom  
+Authorization Servicen classen kontrollerar jag att nyckeln man skickar in i headern 
+motsvarar den jag skapat i app.configen. 
+Om nyckeln stämmer överens med det som skickas in i headern kan man använda metoderna i rest servicen.
+Annars kastar jag följande fel “WebFaultException(HttpStatusCode.Unauthorized”.                                                   
+
+
+Jag har valt att använda mig utav FaultException i CarRentalsServicen. Exempelvis kontrollerar jag så 
+att alla fält är ifyllda innan man kan skapa en ny kund i databasen. 
+jag har även gjort ett Message Contract där man måste skicka med en nyckel
+ innan man kan lägga till och skapa en ny kund. Nyckeln hämtas i från App.configen. 
+Även där har jag valt att använda mig utav FaultException för att kunna skicka ut ett
+ så specifikt felmeddelande som möjligt.
+I metoden GetCustomerByID kontrollerar jag ifall kunden finns i databasen,
+ om inte hanterar jag detta med ett FaultException “Custumer with id was not found”.
+Mina felmeddelanden fångar jag upp och skriver ut igenom min klient där jag använt mig av webforms. 
+
+jag har använt mig av wshttpBinding i min CarRentalService för att få Message Security
+och WebhttpBinding i min CustomerRestService.
+
+
+
+
+
+Av : Emelie Almenfors
